@@ -1,0 +1,175 @@
+{
+  "categories": [
+    {
+      "category": "luxembourg",
+      "author": {
+        "id": "ava-jensen",
+        "numericId": 1,
+        "name": "Ava Jensen",
+        "gender": "Female",
+        "profileImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80",
+        "country": "Luxembourg",
+        "bio": "Ava reports on city life, public policy and the people changing Luxembourg. Her work combines on-the-ground reporting with clear, useful context.",
+        "websiteLink": "https://avajensenreports.com",
+        "social": {
+          "twitter": "https://x.com/avajensen",
+          "quora": "https://www.quora.com/profile/Ava-Jensen",
+          "reddit": "https://www.reddit.com/user/avajensen/",
+          "medium": "https://medium.com/@avajensen"
+        }
+      }
+    },
+    {
+      "category": "luxembourg-life",
+      "author": {
+        "id": "ava-jensen",
+        "numericId": 1,
+        "name": "Ava Jensen",
+        "gender": "Female",
+        "profileImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80",
+        "country": "Luxembourg",
+        "bio": "Ava reports on city life, public policy and the people changing Luxembourg. Her work combines on-the-ground reporting with clear, useful context.",
+        "websiteLink": "https://avajensenreports.com",
+        "social": {
+          "twitter": "https://x.com/avajensen",
+          "quora": "https://www.quora.com/profile/Ava-Jensen",
+          "reddit": "https://www.reddit.com/user/avajensen/",
+          "medium": "https://medium.com/@avajensen"
+        }
+      }
+    },
+    {
+      "category": "world",
+      "author": {
+        "id": "marc-weber",
+        "numericId": 2,
+        "name": "Marc Weber",
+        "gender": "Male",
+        "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
+        "country": "Belgium",
+        "bio": "Marc covers European politics, finance and cross-border affairs with a focus on how major decisions affect everyday life.",
+        "websiteLink": "https://marcweberworld.com",
+        "social": {
+          "twitter": "https://x.com/marcweber",
+          "quora": "https://www.quora.com/profile/Marc-Weber",
+          "reddit": "https://www.reddit.com/user/marcweber/",
+          "medium": "https://medium.com/@marcweber"
+        }
+      }
+    },
+    {
+      "category": "business",
+      "author": {
+        "id": "marc-weber",
+        "numericId": 2,
+        "name": "Marc Weber",
+        "gender": "Male",
+        "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
+        "country": "Belgium",
+        "bio": "Marc covers European politics, finance and cross-border affairs with a focus on how major decisions affect everyday life.",
+        "websiteLink": "https://marcweberworld.com",
+        "social": {
+          "twitter": "https://x.com/marcweber",
+          "quora": "https://www.quora.com/profile/Marc-Weber",
+          "reddit": "https://www.reddit.com/user/marcweber/",
+          "medium": "https://medium.com/@marcweber"
+        }
+      }
+    },
+    {
+      "category": "culture",
+      "author": {
+        "id": "sofia-klein",
+        "numericId": 3,
+        "name": "Sofia Klein",
+        "gender": "Female",
+        "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80",
+        "country": "Luxembourg",
+        "bio": "Sofia follows Luxembourg's food, arts, design and weekend scene. She is always looking for the small detail that makes a place memorable.",
+        "websiteLink": "https://sofiakleinculture.com",
+        "social": {
+          "twitter": "https://x.com/sofiaklein",
+          "quora": "https://www.quora.com/profile/Sofia-Klein",
+          "reddit": "https://www.reddit.com/user/sofiaklein/",
+          "medium": "https://medium.com/@sofiaklein"
+        }
+      }
+    },
+    {
+      "category": "travel",
+      "author": {
+        "id": "sofia-klein",
+        "numericId": 3,
+        "name": "Sofia Klein",
+        "gender": "Female",
+        "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80",
+        "country": "Luxembourg",
+        "bio": "Sofia follows Luxembourg's food, arts, design and weekend scene. She is always looking for the small detail that makes a place memorable.",
+        "websiteLink": "https://sofiakleinculture.com",
+        "social": {
+          "twitter": "https://x.com/sofiaklein",
+          "quora": "https://www.quora.com/profile/Sofia-Klein",
+          "reddit": "https://www.reddit.com/user/sofiaklein/",
+          "medium": "https://medium.com/@sofiaklein"
+        }
+      }
+    },
+    {
+      "category": "sport",
+      "author": {
+        "id": "leo-martin",
+        "numericId": 4,
+        "name": "Leo Martin",
+        "gender": "Male",
+        "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
+        "country": "Luxembourg",
+        "bio": "Leo reports live from major events and tracks the stories developing across Luxembourg, Europe and the wider world.",
+        "websiteLink": "https://leomartinreports.com",
+        "social": {
+          "twitter": "https://x.com/leomartin",
+          "quora": "https://www.quora.com/profile/Leo-Martin",
+          "reddit": "https://www.reddit.com/user/leomartin/",
+          "medium": "https://medium.com/@leomartin"
+        }
+      }
+    },
+    {
+      "category": "science",
+      "author": {
+        "id": "leo-martin",
+        "numericId": 4,
+        "name": "Leo Martin",
+        "gender": "Male",
+        "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
+        "country": "Luxembourg",
+        "bio": "Leo reports live from major events and tracks the stories developing across Luxembourg, Europe and the wider world.",
+        "websiteLink": "https://leomartinreports.com",
+        "social": {
+          "twitter": "https://x.com/leomartin",
+          "quora": "https://www.quora.com/profile/Leo-Martin",
+          "reddit": "https://www.reddit.com/user/leomartin/",
+          "medium": "https://medium.com/@leomartin"
+        }
+      }
+    },
+    {
+      "category": "technology",
+      "author": {
+        "id": "marc-weber",
+        "numericId": 2,
+        "name": "Marc Weber",
+        "gender": "Male",
+        "profileImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
+        "country": "Belgium",
+        "bio": "Marc covers European politics, finance and cross-border affairs with a focus on how major decisions affect everyday life.",
+        "websiteLink": "https://marcweberworld.com",
+        "social": {
+          "twitter": "https://x.com/marcweber",
+          "quora": "https://www.quora.com/profile/Marc-Weber",
+          "reddit": "https://www.reddit.com/user/marcweber/",
+          "medium": "https://medium.com/@marcweber"
+        }
+      }
+    }
+  ]
+}
