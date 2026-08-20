@@ -13,17 +13,44 @@ const ICONS = {
   ),
   linkedin: (
     <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z" />
-  )
+  ),
+  twitter: (
+    <path d="M13.6 10.62 20.2 3h-1.57l-5.73 6.62L8.3 3H3l6.92 10.02L3 21h1.57l6.05-6.99L15.7 21H21l-7.4-10.38Zm-2.14 2.48-.7-1L5.3 4.2h2.4l4.5 6.43.7 1 5.85 8.37h-2.4l-4.79-6.9Z" />
+  ),
 };
 
-export default function SocialIcons({ className = '', size = 'w-9 h-9' }) {
-  const links = [
-    ['facebook', 'https://facebook.com', 'Facebook'],
-    ['x', 'https://x.com', 'X (Twitter)'],
-    ['instagram', 'https://instagram.com', 'Instagram'],
-    ['youtube', 'https://youtube.com', 'YouTube'],
-    ['linkedin', 'https://linkedin.com', 'LinkedIn']
-  ];
+const DEFAULT_LINKS = [
+  ['facebook', 'https://facebook.com', 'Facebook'],
+  ['x', 'https://x.com', 'X (Twitter)'],
+  ['instagram', 'https://instagram.com', 'Instagram'],
+  ['youtube', 'https://youtube.com', 'YouTube'],
+  ['linkedin', 'https://linkedin.com', 'LinkedIn']
+];
+
+const LABELS = {
+  twitter: 'X (Twitter)',
+  quora: 'Quora',
+  reddit: 'Reddit',
+  medium: 'Medium',
+  website: 'Website'
+};
+
+// Pass `social` (e.g. an author.social object: { twitter, quora, reddit, medium })
+// and/or `website` to render data-driven links. With neither prop, falls back
+// to the default site-wide social set used in the Header/Footer.
+export default function SocialIcons({ social, website, className = '', size = 'w-9 h-9' }) {
+  const isDataDriven = Boolean(social || website);
+
+  const links = isDataDriven
+    ? [
+        ...(website ? [['website', website, LABELS.website]] : []),
+        ...Object.entries(social || {})
+          .filter(([, href]) => href)
+          .map(([key, href]) => [key, href, LABELS[key] || key])
+      ]
+    : DEFAULT_LINKS;
+
+  if (!links.length) return null;
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`.trim()}>
@@ -34,11 +61,15 @@ export default function SocialIcons({ className = '', size = 'w-9 h-9' }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className={`${size} inline-flex items-center justify-center rounded-full bg-ink text-white hover:bg-brand transition-colors duration-150 [&>svg]:w-[17px] [&>svg]:h-[17px]`}
+          className={`${size} inline-flex items-center justify-center rounded-full bg-ink text-white hover:bg-brand transition-colors duration-150 [&>svg]:w-[17px] [&>svg]:h-[17px] text-[11px] font-extrabold`}
         >
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            {ICONS[key]}
-          </svg>
+          {ICONS[key] ? (
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              {ICONS[key]}
+            </svg>
+          ) : (
+            key.charAt(0).toUpperCase()
+          )}
         </a>
       ))}
     </div>

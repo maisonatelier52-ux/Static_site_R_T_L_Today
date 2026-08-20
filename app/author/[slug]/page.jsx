@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ArticleCard from '@/components/ui/ArticleCard';
+import SocialIcons from '@/components/ui/SocialIcons';
 import { authors, getArticlesByAuthor, getAuthor, getAuthorRole } from '@/lib/data';
 
 export function generateStaticParams() {
@@ -50,6 +52,12 @@ export default async function AuthorPage({ params }) {
             />
           </div>
           <div className="max-[430px]:col-span-2">
+            <div className="flex flex-wrap items-center gap-2.5 text-[9px] font-extrabold uppercase tracking-[0.12em] mb-3">
+              <Link href="/" className="text-brand hover:underline">Home</Link>
+              <span className="normal-case font-semibold tracking-normal text-[#9aa0a6] before:content-['/'] before:mr-2.5 before:text-[#5b6066] before:font-extrabold before:uppercase before:tracking-[0.12em]">
+                {author.name}
+              </span>
+            </div>
             <span className="text-brand text-[9px] font-extrabold tracking-[0.16em]">RTL TODAY JOURNALIST</span>
             <h1
               className="leading-[0.88] tracking-[-0.065em] my-2.5 mb-3.5 max-[720px]:text-[42px] max-[430px]:text-[36px]"
@@ -59,10 +67,11 @@ export default async function AuthorPage({ params }) {
             </h1>
             <h2 className="text-[15px] max-[720px]:text-xs text-[#ff4954] mb-5">{role}</h2>
             <p className="text-[#c4c8cc] leading-[1.6] max-w-[540px] text-[13px]">{author.bio}</p>
-            <div className="flex flex-wrap gap-[15px] mt-[22px] text-[9px] font-extrabold uppercase tracking-[0.08em] [&>span+span]:before:content-['\\2022'] [&>span+span]:before:text-brand [&>span+span]:before:mr-[15px]">
-              <span>{author.country}</span>
-              <span>{author.social?.twitter ? author.social.twitter.replace('https://x.com/', '@') : ''}</span>
-              <span>{authorArticles.length} stories</span>
+            <div className="flex flex-wrap items-center gap-[15px] mt-[22px]">
+              <SocialIcons social={author.social} website={author.websiteLink} size="w-8 h-8" />
+              <span className="text-[9px] font-extrabold uppercase tracking-[0.08em] text-[#c4c8cc]">
+                {authorArticles.length} stories
+              </span>
             </div>
           </div>
           <div className="text-[118px] font-black opacity-[.16] tracking-[-0.12em] max-[900px]:hidden">{initials}</div>
