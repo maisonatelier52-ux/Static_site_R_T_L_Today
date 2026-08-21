@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -56,6 +56,16 @@ const breakingNews = articles.slice(0, 5).map((article) => ({
   href: `/${article.category}/${article.slug}`
 }));
 
+// ── Flat, searchable list of every published article ──────────────────────
+const ALL_ARTICLES = articles.map((article) => ({
+  id: article.id,
+  title: article.title,
+  slug: article.slug,
+  category: article.category,
+  categoryLabel: article.categoryLabel,
+  excerpt: article.excerpt || article.intro || ''
+}));
+
 const topBarSocials = [
   [faFacebookF, 'https://facebook.com', 'Facebook'],
   [faXTwitter, 'https://x.com', 'X (Twitter)'],
@@ -71,6 +81,23 @@ function formatToday() {
   const month = now.toLocaleDateString('en-GB', { month: 'long' });
   const year = now.getFullYear();
   return { weekday, dateLabel: `${day} ${month} ${year}` };
+}
+
+// Wrap the portion(s) of `text` that match `query` in <mark> for highlighting.
+function highlightMatch(text, query) {
+  if (!query.trim()) return text;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escaped})`, 'gi');
+  const parts = text.split(regex);
+  return parts.map((part, i) =>
+    regex.test(part) ? (
+      <mark key={i} className="bg-brand/15 text-brand rounded px-0.5 font-semibold not-italic">
+        {part}
+      </mark>
+    ) : (
+      part
+    )
+  );
 }
 
 function NewsflashMarquee({ items }) {
@@ -134,9 +161,17 @@ function NewsflashMarquee({ items }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { weekday, dateLabel } = formatToday();
+
+  // ── Live search state ────────────────────────────────────────────────────
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const searchInputRef = useRef(null);
+  const searchContainerRef = useRef(null);
+  // ─────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -144,6 +179,74 @@ export default function Header() {
       document.body.style.overflow = '';
     };
   }, [menuOpen]);
+
+  // Focus the input as soon as the search bar opens.
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchOpen]);
+
+  // Close search on outside click.
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        closeSearch();
+      }
+    };
+    if (searchOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchOpen]);
+
+  // Close search whenever the route changes.
+  useEffect(() => {
+    closeSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  const closeSearch = () => {
+    setSearchOpen(false);
+    setSearchQuery('');
+    setSearchResults([]);
+  };
+
+  const runSearch = (query) => {
+    if (query.trim().length < 2) {
+      setSearchResults([]);
+      return;
+    }
+    const lower = query.toLowerCase();
+    const filtered = ALL_ARTICLES.filter(
+      (article) =>
+        article.title.toLowerCase().includes(lower) || article.excerpt.toLowerCase().includes(lower)
+    ).slice(0, 8);
+    setSearchResults(filtered);
+  };
+
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    runSearch(query);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (searchResults.length > 0) {
+      handleArticleClick(searchResults[0].category, searchResults[0].slug);
+    }
+  };
+
+  const handleSearchKeyDown = (event) => {
+    if (event.key === 'Escape') closeSearch();
+  };
+
+  const handleArticleClick = (category, slug) => {
+    closeSearch();
+    router.push(`/${category}/${slug}`);
+  };
 
   const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
@@ -176,36 +279,84 @@ export default function Header() {
               </a>
             ))}
           </div>
-
-          {/* <span className="hidden sm:inline-block w-px h-3 bg-white/25" />
-
-          <button
-            className="border-0 bg-transparent text-white hover:text-brand [&>svg]:w-3 [&>svg]:h-3"
-            onClick={() => setSearchOpen((value) => !value)}
-            aria-label="Toggle search"
-            aria-expanded={searchOpen}
-          >
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </button> */}
         </div>
         </div>
       </div>
 
+      {/* Full-width search bar, replaces the utility bar's spot while open */}
       {searchOpen && (
-        <div className="bg-ink py-[15px]">
-          <form className="w-[min(1300px,calc(100%-40px))] mx-auto flex gap-2.5" action="/luxembourg">
+        <div className="bg-ink py-[15px] relative" ref={searchContainerRef}>
+          <form className="w-[min(1300px,calc(100%-40px))] mx-auto flex gap-2.5" onSubmit={handleSearchSubmit}>
             <label className="sr-only" htmlFor="site-search">Search RTL Today</label>
             <input
               id="site-search"
               name="q"
+              ref={searchInputRef}
               autoFocus
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onKeyDown={handleSearchKeyDown}
               placeholder="Search stories, places and topics&hellip;"
               className="flex-1 border-0 px-4 py-[13px] outline-none text-[15px]"
+              aria-label="Search articles"
+              aria-autocomplete="list"
+              aria-expanded={searchResults.length > 0}
             />
-            <button type="submit" className="border-0 bg-brand text-white font-extrabold px-[22px] text-[15px]">
+            <button type="submit" className="border-0 bg-brand text-white font-extrabold px-[22px] text-[15px] shrink-0">
               Search
             </button>
+            <button
+              type="button"
+              onClick={closeSearch}
+              className="border-0 bg-transparent text-white/70 hover:text-white px-1 shrink-0"
+              aria-label="Close search"
+            >
+              <FontAwesomeIcon icon={faXmark} className="w-4 h-4" />
+            </button>
           </form>
+
+          {/* Live results dropdown, spans the same width as the search bar */}
+          {(searchResults.length > 0 || searchQuery.trim().length >= 2) && (
+            <div className="w-[min(1300px,calc(100%-40px))] mx-auto relative">
+              <div
+                className="absolute left-0 right-0 top-2 bg-white rounded-lg shadow-2xl border border-line overflow-hidden z-50"
+                role="listbox"
+                aria-label="Search results"
+              >
+                {searchResults.length > 0 ? (
+                  <>
+                    {searchResults.map((article) => (
+                      <button
+                        key={article.id}
+                        type="button"
+                        onClick={() => handleArticleClick(article.category, article.slug)}
+                        className="w-full text-left px-4 py-3 hover:bg-soft transition-colors border-b border-line last:border-0 group"
+                        role="option"
+                      >
+                        <div className="flex items-start gap-3">
+                          <span className="mt-0.5 shrink-0 text-[10px] font-bold uppercase tracking-wider bg-brand text-white px-2 py-0.5 rounded">
+                            {article.categoryLabel}
+                          </span>
+                          <span className="text-sm font-semibold text-ink group-hover:text-brand transition-colors leading-snug line-clamp-2">
+                            {highlightMatch(article.title, searchQuery)}
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                    <div className="px-4 py-2 bg-soft text-xs text-muted">
+                      {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} found
+                    </div>
+                  </>
+                ) : (
+                  <div className="px-4 py-6 text-center">
+                    <p className="text-sm text-muted">
+                      No articles found for <span className="font-semibold text-ink">&ldquo;{searchQuery}&rdquo;</span>
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
