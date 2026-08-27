@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import WeatherWidget from '@/components/ui/WeatherWidget';
 
 export default function StickySidebar({ latest = [] }) {
   return (
@@ -26,18 +27,7 @@ export default function StickySidebar({ latest = [] }) {
         </button>
       </div>
 
-      <div className="p-[13px] border border-line bg-white max-md:min-h-[155px]">
-        <div className="flex justify-between items-center text-[12px]">
-          <span>Luxembourg</span>
-          <strong className="text-[34px]">24&deg;</strong>
-        </div>
-        <p className="text-[11px] text-muted border-b border-line pb-2.5">Partly sunny &middot; Light breeze</p>
-        <div className="grid grid-cols-3 text-center text-[10px] leading-[1.8]">
-          <span>Wed<br /><b>25&deg;</b></span>
-          <span>Thu<br /><b>23&deg;</b></span>
-          <span>Fri<br /><b>26&deg;</b></span>
-        </div>
-      </div>
+      <WeatherWidget />
 
       {latest.length > 0 && (
         <div className="border-t-[3px] border-ink bg-white max-md:hidden">
