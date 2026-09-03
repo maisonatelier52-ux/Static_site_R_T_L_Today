@@ -170,6 +170,44 @@
           "medium": "https://medium.com/@marcweber"
         }
       }
+    },
+    {
+      "category": "us",
+      "author": {
+        "id": "jordan-reyes",
+        "numericId": 5,
+        "name": "Jordan Reyes",
+        "gender": "Male",
+        "profileImage": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80",
+        "country": "United States",
+        "bio": "Jordan covers national news across the United States, from Washington policy to the stories shaping communities coast to coast.",
+        "websiteLink": "https://jordanreyesnews.com",
+        "social": {
+          "twitter": "https://x.com/jordanreyes",
+          "quora": "https://www.quora.com/profile/Jordan-Reyes",
+          "reddit": "https://www.reddit.com/user/jordanreyes/",
+          "medium": "https://medium.com/@jordanreyes"
+        }
+      }
+    },
+    {
+      "category": "finance",
+      "author": {
+        "id": "elena-cho",
+        "numericId": 6,
+        "name": "Elena Cho",
+        "gender": "Female",
+        "profileImage": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=500&q=80",
+        "country": "United States",
+        "bio": "Elena reports on markets, the Federal Reserve and the economic trends shaping household finances across the country.",
+        "websiteLink": "https://elenachomarkets.com",
+        "social": {
+          "twitter": "https://x.com/elenacho",
+          "quora": "https://www.quora.com/profile/Elena-Cho",
+          "reddit": "https://www.reddit.com/user/elenacho/",
+          "medium": "https://medium.com/@elenacho"
+        }
+      }
     }
   ]
 }

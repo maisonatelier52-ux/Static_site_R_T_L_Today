@@ -26,7 +26,7 @@ import { categories, articles } from '../../lib/data';
 // Categories shown in the main desktop nav bar, in display order.
 // "luxembourg" is intentionally labelled "News" in the header even
 // though its CATEGORY_LABELS value (used elsewhere) is "Luxembourg".
-const MAIN_NAV_SLUGS = ['luxembourg', 'world', 'business', 'culture', 'sport', 'science', 'travel'];
+const MAIN_NAV_SLUGS = ['luxembourg', 'world', 'us', 'business', 'finance', 'culture', 'sport', 'science', 'travel'];
 const MAIN_NAV_LABEL_OVERRIDES = {
   luxembourg: 'News'
 };

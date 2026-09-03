@@ -1,5 +1,3 @@
-
-
 import HeroSection from '@/components/home/HeroSection';
 import LatestSection from '@/components/home/LatestSection';
 import HighlightsSection from '@/components/home/HighlightsSection';
@@ -32,9 +30,10 @@ export default function HomePage() {
       </div>
       <PromoBand />
       <div className="w-[min(1100px,calc(100%-40px))] max-[900px]:w-[min(100%-28px,1100px)] max-[430px]:w-[calc(100%-24px)] mx-auto">
-        <CategoryFeatureSection title="World" slug="world" articles={getArticlesByCategory('world').concat(getArticlesByCategory('business'))} />
+        <CategoryFeatureSection title="World" slug="world" articles={getArticlesByCategory('world').concat(getArticlesByCategory('us'))} />
         <PicturesSection articles={latest.slice(2, 8)} />
         <ExploreSection articles={latest.slice(8, 14)} />
+        <CategoryFeatureSection title="Business" slug="business" articles={getArticlesByCategory('business').concat(getArticlesByCategory('finance'))} />
         <CategoryFeatureSection title="Sport" slug="sport" articles={getArticlesByCategory('sport').concat(getArticlesByCategory('science'))} />
       </div>
     </>
