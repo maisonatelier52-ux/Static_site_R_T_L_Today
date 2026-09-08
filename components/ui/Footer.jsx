@@ -28,8 +28,9 @@ export default function Footer() {
           <Link href="/world" className="text-[13px] text-[#8d9399] hover:text-white">World</Link>
           <Link href="/business" className="text-[13px] text-[#8d9399] hover:text-white">Business</Link>
           <Link href="/technology" className="text-[13px] text-[#8d9399] hover:text-white">Technology</Link>
-          <Link href="/culture" className="text-[13px] text-[#8d9399] hover:text-white">Culture</Link>
-          <Link href="/sport" className="text-[13px] text-[#8d9399] hover:text-white">Sport</Link>
+          <Link href="/politics" className="text-[13px] text-[#8d9399] hover:text-white">Politics</Link>
+          <Link href="/health" className="text-[13px] text-[#8d9399] hover:text-white">Health</Link>
+          <Link href="/investigation" className="text-[13px] text-[#8d9399] hover:text-white">Investigation</Link>
         </div>
 
         {/* Quick Links */}

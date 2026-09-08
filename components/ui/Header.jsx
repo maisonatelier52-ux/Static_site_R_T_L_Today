@@ -24,12 +24,8 @@ import SocialIcons from './SocialIcons';
 import { categories, articles } from '../../lib/data';
 
 // Categories shown in the main desktop nav bar, in display order.
-// "luxembourg" is intentionally labelled "News" in the header even
-// though its CATEGORY_LABELS value (used elsewhere) is "Luxembourg".
-const MAIN_NAV_SLUGS = ['luxembourg', 'world', 'us', 'business', 'finance', 'culture', 'sport', 'science', 'travel'];
-const MAIN_NAV_LABEL_OVERRIDES = {
-  luxembourg: 'News'
-};
+const MAIN_NAV_SLUGS = ['world', 'us', 'business', 'finance', 'politics', 'health', 'technology', 'investigation'];
+const MAIN_NAV_LABEL_OVERRIDES = {};
 
 // Build the main nav directly from articles.json (via lib/data.js),
 // instead of hard-coding it.
@@ -43,7 +39,7 @@ const mainNavItems = [
 ];
 
 // Any category that isn't in the main nav still gets a link in the
-// slide-out mobile menu (e.g. Luxembourg Life, Technology).
+// slide-out mobile menu.
 const extraNavItems = categories
   .filter((c) => !MAIN_NAV_SLUGS.includes(c.slug))
   .map((c) => [c.label, `/${c.slug}`]);

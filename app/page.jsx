@@ -25,7 +25,7 @@ export default function HomePage() {
         <HeroSection articles={latest.slice(0, 18)} />
         <LatestSection articles={latest.slice(4, 13)} />
         <HighlightsSection articles={highlights} />
-        <LifeSection articles={getArticlesByCategory('luxembourg-life').concat(getArticlesByCategory('culture'))} />
+        <LifeSection articles={getArticlesByCategory('health')} />
         <EditorsPickSection articles={editors} />
       </div>
       <PromoBand />
@@ -34,7 +34,8 @@ export default function HomePage() {
         <PicturesSection articles={latest.slice(2, 8)} />
         <ExploreSection articles={latest.slice(8, 14)} />
         <CategoryFeatureSection title="Business" slug="business" articles={getArticlesByCategory('business').concat(getArticlesByCategory('finance'))} />
-        <CategoryFeatureSection title="Sport" slug="sport" articles={getArticlesByCategory('sport').concat(getArticlesByCategory('science'))} />
+        <CategoryFeatureSection title="Politics" slug="politics" articles={getArticlesByCategory('politics').concat(getArticlesByCategory('investigation'))} />
+        <CategoryFeatureSection title="Technology" slug="technology" articles={getArticlesByCategory('technology')} />
       </div>
     </>
   );

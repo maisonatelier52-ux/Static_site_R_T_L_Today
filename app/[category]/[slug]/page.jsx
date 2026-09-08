@@ -234,7 +234,7 @@ export default async function ArticlePage({ params }) {
               <span key={keyword} className="bg-soft px-2.5 py-[7px]">{keyword}</span>
             ))}
             <Link href={`/${article.category}`} className="bg-soft px-2.5 py-[7px] hover:text-brand">{article.categoryLabel}</Link>
-            <Link href="/luxembourg" className="bg-soft px-2.5 py-[7px] hover:text-brand">Latest news</Link>
+            <Link href="/world" className="bg-soft px-2.5 py-[7px] hover:text-brand">Latest news</Link>
           </div>
         </div>
 
