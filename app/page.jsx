@@ -37,6 +37,7 @@ export default function HomePage() {
         <CategoryFeatureSection title="Politics" slug="politics" articles={getArticlesByCategory('politics').concat(getArticlesByCategory('investigation'))} />
         <CategoryFeatureSection title="Technology" slug="technology" articles={getArticlesByCategory('technology')} />
       </div>
+      
     </>
   );
 }
